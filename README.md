@@ -25,26 +25,23 @@ pnpm install hono-wait-until
 
 ### Import:
 ```ts
+import type { WaitUntilList } from 'hono-wait-until'
 import {
-  waitList, // Optional helper function instead of accessing via context
-  waitListMiddleware,
+  waitUntil, // Optional helper function instead of accessing via context
+  waitUntilMiddleware,
 } from 'hono-wait-until'
 
 const app = new Hono<{ Variables: { waitUntilList: WaitUntilList } }>()
   // Preferably, use the waitUntilMiddleware as early as you can.
   .use(waitUntilMiddleware())
   .get('/context', async (c) => {
-    flags.context = false
-
     const waitUntilList = c.get('waitUntilList')
-    waitUntilList.waitUntil(sleep(300).then(() => flags.context = true))
+    waitUntilList.waitUntil(sleep(300))
 
     return c.text(`Using waitUntil via context variable`)
   })
   .get('/helper', async (c) => {
-    flags.helper = false
-
-    waitUntil(sleep(300).then(() => flags.helper = true), c)
+    waitUntil(sleep(300), c)
 
     return c.text(`Using waitUntil via helper function`)
   })
