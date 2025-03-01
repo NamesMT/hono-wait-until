@@ -2,7 +2,7 @@
   "name": "hono-wait-until",
   "type": "module",
   "version": "1.0.1",
-  "packageManager": "pnpm@10.4.0",
+  "packageManager": "pnpm@10.5.2",
   "description": "",
   "author": "NamesMT <dangquoctrung123@gmail.com>",
   "license": "MIT",
@@ -48,26 +48,26 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "hono": "^4.7.1",
+    "hono": "^4.7.2",
     "wait-until-generalized": "^0.0.5"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.2.0",
+    "@antfu/eslint-config": "^4.3.0",
     "@namesmt/utils": "^0.5.9",
-    "@types/node": "^22.13.4",
-    "@vitest/coverage-v8": "^3.0.5",
-    "eslint": "^9.20.1",
+    "@types/node": "^22.13.8",
+    "@vitest/coverage-v8": "^3.0.7",
+    "eslint": "^9.21.0",
     "lint-staged": "^15.4.3",
     "simple-git-hooks": "^2.11.1",
     "std-env": "^3.8.0",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.3",
-    "unbuild": "^3.3.1",
-    "vitest": "^3.0.5"
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "unbuild": "^3.5.0",
+    "vitest": "^3.0.7"
   },
   "pnpm": {
     "overrides": {
-      "is-core-module": "npm:@nolyfill/is-core-module@^1"
+      "is-core-module": "npm:@nolyfill/is-core-module@^1.0.39"
     },
     "onlyBuiltDependencies": [
       "esbuild",
