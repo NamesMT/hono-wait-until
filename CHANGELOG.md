@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v2.0.1
+
+[compare changes](https://github.com/namesmt/hono-wait-until/compare/v2.0.0...v2.0.1)
+
+### 🏡 Chore
+
+- Assign found errors to `cause` ([0092a8f](https://github.com/namesmt/hono-wait-until/commit/0092a8f))
+
+### ❤️ Contributors
+
+- NamesMT ([@NamesMT](https://github.com/NamesMT))
+
 ## v2.0.0
 
 [compare changes](https://github.com/namesmt/hono-wait-until/compare/v1.0.1...v2.0.0)
