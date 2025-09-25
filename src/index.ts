@@ -1,5 +1,6 @@
 import type { Context } from 'hono'
 import { createMiddleware } from 'hono/factory'
+import { HTTPException } from 'hono/http-exception'
 import { WaitUntilList } from 'wait-until-generalized'
 
 export type { WaitUntilList }
@@ -22,7 +23,11 @@ export function waitUntilMiddleware(options?: waitUntilMiddlewareOptions) {
 
     await next()
 
-    await waitUntilList.waitUntilSettled()
+    const errorsFound = (await waitUntilList.waitUntilSettled()).filter(e => e.status === 'rejected').map(e => e.reason)
+    if (errorsFound.length > 0) {
+      console.error(errorsFound)
+      throw new HTTPException(500, { message: 'Some async tasks were rejected' })
+    }
   })
 }
 

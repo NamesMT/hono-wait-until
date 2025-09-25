@@ -13,16 +13,24 @@ describe('basic runs should work', () => {
       flags.context = false
 
       const waitUntilList = c.get('waitUntilList')
-      waitUntilList.waitUntil(sleep(300).then(() => flags.context = true))
+      waitUntilList.waitUntil(sleep(150).then(() => flags.context = true))
 
       return c.text(`Hello - ${flags.context}`)
     })
     .get('/helper', async (c) => {
       flags.helper = false
 
-      waitUntil(sleep(300).then(() => flags.helper = true), c)
+      waitUntil(sleep(150).then(() => flags.helper = true), c)
 
       return c.text(`Hello - ${flags.helper}`)
+    })
+    .get('/error', async (c) => {
+      const throwErr = async () => {
+        throw new Error('Sample error')
+      }
+      waitUntil(throwErr(), c)
+
+      return c.text('OK')
     })
 
   it('using waitUntil via context variable', async () => {
@@ -30,8 +38,8 @@ describe('basic runs should work', () => {
     const context = await app.request('/context')
     const time = performance.now() - start
 
-    // The request should take at least 300ms due to the waitList blocking
-    expect(time).toBeGreaterThanOrEqual(300)
+    // The request should take at least 150ms due to the waitList blocking
+    expect(time).toBeGreaterThanOrEqual(150)
     //   The flag should be false here
     expect(await context.text()).toBe('Hello - false')
     // The flag should be true
@@ -43,11 +51,17 @@ describe('basic runs should work', () => {
     const context = await app.request('/helper')
     const time = performance.now() - start
 
-    // The request should take at least 300ms due to the waitList blocking
-    expect(time).toBeGreaterThanOrEqual(300)
+    // The request should take at least 150ms due to the waitList blocking
+    expect(time).toBeGreaterThanOrEqual(150)
     //   The flag should be false here
     expect(await context.text()).toBe('Hello - false')
     // The flag should be true
     expect(flags.helper).toBe(true)
+  })
+
+  it('error thrown in .waitUntilSettled()', async () => {
+    const context = await app.request('/error')
+
+    expect(await context.text()).toBe('Some async tasks were rejected')
   })
 })
