@@ -26,7 +26,7 @@ export function waitUntilMiddleware(options?: waitUntilMiddlewareOptions) {
     const errorsFound = (await waitUntilList.waitUntilSettled()).filter(e => e.status === 'rejected').map(e => e.reason)
     if (errorsFound.length > 0) {
       console.error(errorsFound)
-      throw new HTTPException(500, { message: 'Some async tasks were rejected' })
+      throw new HTTPException(500, { message: 'Some async tasks were rejected', cause: errorsFound })
     }
   })
 }
