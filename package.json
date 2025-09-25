@@ -1,7 +1,7 @@
 {
   "name": "hono-wait-until",
   "type": "module",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "packageManager": "pnpm@10.17.1",
   "description": "",
   "author": "NamesMT <dangquoctrung123@gmail.com>",
