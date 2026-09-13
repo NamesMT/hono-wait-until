@@ -7,9 +7,9 @@ export type { WaitUntilList }
 
 export interface waitUntilMiddlewareOptions {
   /**
-   * This options could be used to response immediately without blocking until all async tasks are settled. (basically, it disables the middleware)
-   * 
-   * This is useful if you have migrated to a platform that support background async tasks and want a test run without commiting code changes to remove the waitUntil wrappers.
+   * This option could be used to respond immediately without blocking until all async tasks are settled (basically, it disables the middleware).
+   *
+   * This is useful if you have migrated to a platform that supports background async tasks and want a test run without committing code changes to remove the waitUntil wrappers.
    */
   continueWithoutSettled?: boolean
 }

@@ -47,6 +47,18 @@ const app = new Hono<{ Variables: { waitUntilList: WaitUntilList } }>()
   })
 ```
 
+If any of the wrapped async tasks rejects, the middleware logs the errors and responds with a `500` (`Some async tasks were rejected`).
+
+## Options
+
+### `continueWithoutSettled`
+
+Pass `{ continueWithoutSettled: true }` to `waitUntilMiddleware` to respond immediately without blocking until all async tasks settle. This effectively disables the middleware and is useful when you have migrated to a platform that supports background async tasks, but want a test run without removing the `waitUntil` wrappers:
+
+```ts
+app.use(waitUntilMiddleware({ continueWithoutSettled: true }))
+```
+
 ## Roadmap
 - [ ] Become the legendary 10000x developer
 
