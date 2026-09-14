@@ -1,6 +1,26 @@
 # Changelog
 
 
+## v2.0.2
+
+[compare changes](https://github.com/namesmt/hono-wait-until/compare/v2.0.1...v2.0.2)
+
+### 🩹 Fixes
+
+- Use relative paths (drop deprecated `baseUrl`) ([db47e77](https://github.com/namesmt/hono-wait-until/commit/db47e77))
+
+### 📖 Documentation
+
+- Document continueWithoutSettled option and fix JSDoc typo ([9dbfc1e](https://github.com/namesmt/hono-wait-until/commit/9dbfc1e))
+
+### 🏡 Chore
+
+- Migrate to pnpm 12 ([7c1da12](https://github.com/namesmt/hono-wait-until/commit/7c1da12))
+
+### ❤️ Contributors
+
+- NamesMT ([@NamesMT](https://github.com/NamesMT))
+
 ## v2.0.1
 
 [compare changes](https://github.com/namesmt/hono-wait-until/compare/v2.0.0...v2.0.1)
