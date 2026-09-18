@@ -1,6 +1,34 @@
 # Changelog
 
 
+## v2.1.0
+
+[compare changes](https://github.com/namesmt/hono-wait-until/compare/v2.0.2...v2.1.0)
+
+### 🚀 Enhancements
+
+- Fall through to native waitUntil and vendor the shim ([4ad68da](https://github.com/namesmt/hono-wait-until/commit/4ad68da))
+
+### 📖 Documentation
+
+- Document native waitUntil fallthrough ([4f49f3f](https://github.com/namesmt/hono-wait-until/commit/4f49f3f))
+
+### 📦 Build
+
+- ⚠️  Migrate to tsdown and move hono to peerDependencies ([f7d31ce](https://github.com/namesmt/hono-wait-until/commit/f7d31ce))
+
+### 🤖 CI
+
+- Add CI workflow ([b16cf6f](https://github.com/namesmt/hono-wait-until/commit/b16cf6f))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Migrate to tsdown and move hono to peerDependencies ([f7d31ce](https://github.com/namesmt/hono-wait-until/commit/f7d31ce))
+
+### ❤️ Contributors
+
+- NamesMT ([@NamesMT](https://github.com/NamesMT))
+
 ## v2.0.2
 
 [compare changes](https://github.com/namesmt/hono-wait-until/compare/v2.0.1...v2.0.2)
