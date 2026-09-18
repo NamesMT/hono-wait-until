@@ -6,9 +6,11 @@
 [![Bundlejs][bundlejs-src]][bundlejs-href]
 [![jsDocs.io][jsDocs-src]][jsDocs-href]
 
-**hono-wait-until** is a simple wrapper for [`wait-until-generalized`](https://github.com/bubblydoo/wait-until-generalized), which "`Fake waitUntil in AWS Lambda and other platforms that don't support it.`".
+**hono-wait-until** provides a `waitUntil` helper + middleware that make background/async work survive after the response returns.
 
-It basically waits for all async tasks to complete before returning the response, so the platform won't kill your app with uncompleted async tasks.
+It **automatically falls through to the platform's native `waitUntil`** (Cloudflare Workers, Deno, Bun, Netlify, Vercel Edge, ...) via `c.executionCtx.waitUntil` when available — no shim, no blocking.
+
+On runtimes without a native `waitUntil` (Node, AWS Lambda, ...), it shims one: the middleware collects all wrapped promises and blocks until they settle before returning the response, so the platform won't kill your app with uncompleted async tasks.
 
 ## Usage
 ### Install package:
@@ -48,6 +50,15 @@ const app = new Hono<{ Variables: { waitUntilList: WaitUntilList } }>()
 ```
 
 If any of the wrapped async tasks rejects, the middleware logs the errors and responds with a `500` (`Some async tasks were rejected`).
+
+### Native `waitUntil` fallthrough
+
+On platforms that expose a native execution-context `waitUntil` (Cloudflare Workers, Deno, Bun, Netlify, Vercel Edge, ...), both `waitUntil()` and `waitUntilMiddleware()` delegate straight to `c.executionCtx.waitUntil`:
+
+- `waitUntil()` works **without** the middleware.
+- The middleware becomes a no-op (it will not block, since the runtime already keeps execution alive and reports errors itself).
+
+On runtimes without native `waitUntil` (Node, AWS Lambda, ...), the middleware must be applied and will block until every wrapped task settles.
 
 ## Options
 
