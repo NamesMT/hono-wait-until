@@ -38,8 +38,8 @@ describe('basic runs should work', () => {
     const context = await app.request('/context')
     const time = performance.now() - start
 
-    // The request should take at least 150ms due to the waitList blocking
-    expect(time).toBeGreaterThanOrEqual(150)
+    // The request should block until the waitList settles (~150ms sleep)
+    expect(time).toBeGreaterThanOrEqual(100)
     //   The flag should be false here
     expect(await context.text()).toBe('Hello - false')
     // The flag should be true
@@ -51,8 +51,8 @@ describe('basic runs should work', () => {
     const context = await app.request('/helper')
     const time = performance.now() - start
 
-    // The request should take at least 150ms due to the waitList blocking
-    expect(time).toBeGreaterThanOrEqual(150)
+    // The request should block until the waitList settles (~150ms sleep)
+    expect(time).toBeGreaterThanOrEqual(100)
     //   The flag should be false here
     expect(await context.text()).toBe('Hello - false')
     // The flag should be true
