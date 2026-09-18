@@ -1,11 +1,11 @@
-import type { WaitUntilList } from 'wait-until-generalized'
+import type { WaitUntilList } from '#src/index.js'
+import { waitUntil, waitUntilMiddleware } from '#src/index.js'
 import { sleep } from '@namesmt/utils'
 import { Hono } from 'hono'
-import { describe, expect, it } from 'vitest'
-import { waitUntil, waitUntilMiddleware } from '~/index'
+import { describe, expect, it, vi } from 'vitest'
 
 const flags: Record<string, any> = {}
-// Note: the tests are running optimistically, in hope that `wait-until-generalized` and `hono`'s middleware system and latency works correctly, 
+// Note: the tests are running optimistically, in hope that the shim and `hono`'s middleware system and latency work correctly,
 describe('basic runs should work', () => {
   const app = new Hono<{ Variables: { waitUntilList: WaitUntilList } }>()
     .use(waitUntilMiddleware())
@@ -63,5 +63,53 @@ describe('basic runs should work', () => {
     const context = await app.request('/error')
 
     expect(await context.text()).toBe('Some async tasks were rejected')
+  })
+})
+
+describe('native waitUntil fallthrough', () => {
+  it('delegates to the native executionCtx.waitUntil when available', async () => {
+    const nativeWaitUntil = vi.fn()
+    const executionCtx = {
+      waitUntil: nativeWaitUntil,
+      passThroughOnException: () => {},
+      props: {},
+    }
+
+    const app = new Hono()
+      .use(waitUntilMiddleware())
+      .get('/native', async (c) => {
+        waitUntil(Promise.resolve('done'), c)
+        return c.text('OK')
+      })
+
+    const res = await app.request('/native', {}, {}, executionCtx as any)
+
+    expect(res.status).toBe(200)
+    expect(await res.text()).toBe('OK')
+    expect(nativeWaitUntil).toHaveBeenCalledTimes(1)
+  })
+
+  it('does not block when native waitUntil is available', async () => {
+    const nativeWaitUntil = vi.fn()
+    const executionCtx = {
+      waitUntil: nativeWaitUntil,
+      passThroughOnException: () => {},
+      props: {},
+    }
+
+    const app = new Hono()
+      .use(waitUntilMiddleware())
+      .get('/native', async (c) => {
+        waitUntil(sleep(150), c)
+        return c.text('OK')
+      })
+
+    const start = performance.now()
+    await app.request('/native', {}, {}, executionCtx as any)
+    const time = performance.now() - start
+
+    // Native waitUntil is fire-and-forget: the request must NOT block for 150ms.
+    expect(time).toBeLessThan(150)
+    expect(nativeWaitUntil).toHaveBeenCalledTimes(1)
   })
 })

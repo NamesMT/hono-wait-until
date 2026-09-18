@@ -15,6 +15,9 @@
   "bugs": "https://github.com/namesmt/hono-wait-until/issues",
   "keywords": [],
   "sideEffects": false,
+  "imports": {
+    "#src/*": "./src/*"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.mts",
@@ -29,27 +32,28 @@
     "dist"
   ],
   "engines": {
-    "node": ">=20.13.1"
+    "node": ">=22.0.0"
   },
   "scripts": {
     "start": "NODE_ENV=dev tsx src/index.ts",
     "watch": "NODE_ENV=dev tsx watch src/index.ts",
-    "stub": "unbuild --stub",
     "dev": "pnpm run watch",
-    "play": "pnpm run stub && pnpm run --filter playground dev",
-    "play:useBuild": "pnpm run build && pnpm run --filter playground dev",
     "lint": "eslint .",
     "test": "vitest",
     "test:types": "tsc --noEmit",
     "check": "pnpm lint && pnpm test:types && vitest run --coverage",
-    "build": "unbuild",
+    "build": "tsdown",
     "release": "pnpm dlx changelogen@latest --release --push --publish",
     "prepare": "simple-git-hooks",
     "prepublishOnly": "pnpm run build"
   },
-  "dependencies": {
-    "hono": "^4.13.7",
-    "wait-until-generalized": "^0.0.5"
+  "peerDependencies": {
+    "hono": ">=4.13.7"
+  },
+  "peerDependenciesMeta": {
+    "hono": {
+      "optional": false
+    }
   },
   "devDependencies": {
     "@antfu/eslint-config": "^5.4.1",
@@ -57,12 +61,13 @@
     "@types/node": "^24.13.4",
     "@vitest/coverage-v8": "^3.2.7",
     "eslint": "^9.36.0",
+    "hono": "^4.13.7",
     "lint-staged": "^16.4.0",
     "simple-git-hooks": "^2.14.0",
     "std-env": "^3.10.0",
+    "tsdown": "^0.23.0",
     "tsx": "^4.23.13",
     "typescript": "^5.9.3",
-    "unbuild": "^3.6.1",
     "vitest": "^3.2.7"
   },
   "simple-git-hooks": {
