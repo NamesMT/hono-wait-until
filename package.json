@@ -7,12 +7,12 @@
   "author": "NamesMT <dangquoctrung123@gmail.com>",
   "license": "MIT",
   "funding": "https://github.com/sponsors/namesmt",
-  "homepage": "https://github.com/namesmt/hono-wait-until#readme",
+  "homepage": "https://github.com/NamesMT/hono-wait-until#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/namesmt/hono-wait-until.git"
+    "url": "git+https://github.com/NamesMT/hono-wait-until.git"
   },
-  "bugs": "https://github.com/namesmt/hono-wait-until/issues",
+  "bugs": "https://github.com/NamesMT/hono-wait-until/issues",
   "keywords": [
     "hono",
     "hono-middleware",
