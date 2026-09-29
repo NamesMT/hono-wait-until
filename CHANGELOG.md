@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v2.1.3
+
+[compare changes](https://github.com/NamesMT/hono-wait-until/compare/v2.1.2...v2.1.3)
+
+### 🩹 Fixes
+
+- Publish npm metadata and correct repository URL casing ([9aef409](https://github.com/NamesMT/hono-wait-until/commit/9aef409))
+- Publish npm metadata and correct repository URL casing ([f1cea1f](https://github.com/NamesMT/hono-wait-until/commit/f1cea1f))
+
+### ❤️ Contributors
+
+- NamesMT ([@NamesMT](https://github.com/NamesMT))
+
 ## v2.1.2
 
 [compare changes](https://github.com/namesmt/hono-wait-until/compare/v2.1.1...v2.1.2)
