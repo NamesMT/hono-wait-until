@@ -47,4 +47,6 @@ push, GitHub release and npm publish. One-time trusted-publisher setup is in the
   make vitest run once; `release.yml` uses Node 24 and the `pnpm run check` gate.
 - `dist/` and `coverage/` are gitignored; a stale local `dist/` may exist.
 - `prepublishOnly` runs the build, so `npm publish` rebuilds `dist/` itself.
+- `waitUntilMiddleware({ continueWithoutSettled: true })` calls `next()` without creating the list, so on a runtime without native `waitUntil` a later `waitUntil()` throws — it is a migration aid for edge platforms, not a portable option.
+- `waitUntil()` re-resolves the native execution context on every call, so it is safe without the middleware on edge runtimes.
 - `waitUntil()` throws when there is no native execution context and the middleware was not applied.
