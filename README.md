@@ -89,7 +89,7 @@ Locally, `pnpm run release:check <version>` validates a version against `package
 
 One-time setup: publish the package once by hand (npm only offers a trusted publisher for a
 package that already exists), then on npmjs.com enable **Settings → Publishing access → Trusted
-Publishing** for `namesmt/hono-wait-until` with the workflow filename `release.yml`.
+Publishing** for `NamesMT/hono-wait-until` with the workflow filename `release.yml`.
 
 ## Roadmap
 - [ ] Become the legendary 10000x developer
@@ -105,8 +105,8 @@ Publishing** for `namesmt/hono-wait-until` with the workflow filename `release.y
 [npm-downloads-href]: https://npmjs.com/package/hono-wait-until
 [codecov-src]: https://img.shields.io/codecov/c/gh/namesmt/hono-wait-until/main?labelColor=18181B&color=F0DB4F
 [codecov-href]: https://codecov.io/gh/namesmt/hono-wait-until
-[license-src]: https://img.shields.io/github/license/namesmt/hono-wait-until.svg?labelColor=18181B&color=F0DB4F
-[license-href]: https://github.com/namesmt/hono-wait-until/blob/main/LICENSE
+[license-src]: https://img.shields.io/github/license/NamesMT/hono-wait-until.svg?labelColor=18181B&color=F0DB4F
+[license-href]: https://github.com/NamesMT/hono-wait-until/blob/main/LICENSE
 [bundlejs-src]: https://img.shields.io/bundlejs/size/hono-wait-until?labelColor=18181B&color=F0DB4F
 [bundlejs-href]: https://bundlejs.com/?q=hono-wait-until
 [jsDocs-src]: https://img.shields.io/badge/Check_out-jsDocs.io---?labelColor=18181B&color=F0DB4F
