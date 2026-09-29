@@ -1,6 +1,31 @@
 # Changelog
 
 
+## v2.1.1
+
+[compare changes](https://github.com/namesmt/hono-wait-until/compare/v2.1.0...v2.1.1)
+
+### 📖 Documentation
+
+- Add npm metadata and document the waitUntil option gotchas ([e019682](https://github.com/namesmt/hono-wait-until/commit/e019682))
+
+### 🏡 Chore
+
+- **devcontainer:** Migrate from Alpine (musl) to Arch (glibc) image ([cb87caa](https://github.com/namesmt/hono-wait-until/commit/cb87caa))
+- **devcontainer:** Bootstrap pnpm via corepack when missing ([c2462a4](https://github.com/namesmt/hono-wait-until/commit/c2462a4))
+
+### ✅ Tests
+
+- Relax flaky blocking timing assertion ([600faac](https://github.com/namesmt/hono-wait-until/commit/600faac))
+
+### 🤖 CI
+
+- **release:** Dispatch releases by hand and add an AGENTS.md ([7cc3c0d](https://github.com/namesmt/hono-wait-until/commit/7cc3c0d))
+
+### ❤️ Contributors
+
+- NamesMT ([@NamesMT](https://github.com/NamesMT))
+
 ## v2.1.0
 
 [compare changes](https://github.com/namesmt/hono-wait-until/compare/v2.0.2...v2.1.0)
