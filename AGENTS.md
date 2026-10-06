@@ -6,6 +6,20 @@ keep background async work alive after the response returns. With a native execu
 and the middleware is a no-op; without one (Node, AWS Lambda, ...) the middleware collects the
 wrapped promises and blocks until they settle. `hono` is a required peer dependency; Node >= 22.
 
+## Docs
+
+Three tiers, so a reader loads only what the task needs:
+
+1. **`AGENTS.md`** (this file) — orientation and the rules that prevent defects. Read every session.
+2. **`.agentDocs/`** — depth that would bloat this file: module rationale, traps with their causes,
+   compatibility rules. Read on demand.
+3. **`README.md` / `docs/`** — for a person using the package, not for an agent.
+
+**There is no `.agentDocs/` here yet and none is needed at this size.** Create one when a section
+above outgrows a screen or two: move the *reasoning* out and keep the *rule* here with a pointer to
+it — nobody reads a file they do not open. Each document opens with a one-line scope, and this file
+links it.
+
 ## Commands
 
 ```sh
@@ -34,20 +48,6 @@ pnpm run release:preview  # print the changelog the next release would get
 - ESLint via `@antfu/eslint-config` owns formatting: no Prettier, single quotes, 2-space indent.
 - `package.json` points `source` at `./src/index.ts` and `main`/`module`/`types` at the `dist/` build.
 
-## Docs
-
-Three tiers, so a reader loads only what the task needs:
-
-1. **`AGENTS.md`** (this file) — orientation and the rules that prevent defects. Read every session.
-2. **`.agentDocs/`** — depth that would bloat this file: module rationale, traps with their causes,
-   compatibility rules. Read on demand.
-3. **`README.md` / `docs/`** — for a person using the package, not for an agent.
-
-**There is no `.agentDocs/` here yet and none is needed at this size.** Create one when a section
-above outgrows a screen or two: move the *reasoning* out and keep the *rule* here with a pointer to
-it — nobody reads a file they do not open. Each document opens with a one-line scope, and this file
-links it.
-
 ## How to work here
 
 - Check who calls it before you change it; say when impact is unclear rather than guessing.
@@ -56,11 +56,10 @@ links it.
 - Report the risk, not only the change — correctness, security, operational, integration.
 - **Fix the root cause, not the instance.** One bug under many names (a copied helper, a rule stated
   twice, a bypassed guard) is one class: one implementation, one guard.
-- Verify before claiming, and say which direction you checked; a passing test is not evidence it
-  pinned anything.
+- **Verify before claiming, and say what you checked.** A green test proves only what it asserts — **break the thing it guards and watch it fail.** If it still passes, either the test is decoration or a different guard is running; find out which. Where a stub cannot answer the question, drive the real thing. Mark anything unverified as unverified.
 - Missing recall of this project? Read this file + `git log` before acting.
 
-## Conciseness (applies everywhere)
+## Conciseness
 
 Prune verbose, keep correctness — code, comments, docs. A comment only for non-obvious intent; one
 idea per sentence; cut what wouldn't change what a reader does; delete history `git log` already
