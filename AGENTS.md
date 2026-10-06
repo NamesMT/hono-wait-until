@@ -34,6 +34,29 @@ pnpm run release:preview  # print the changelog the next release would get
 - ESLint via `@antfu/eslint-config` owns formatting: no Prettier, single quotes, 2-space indent.
 - `package.json` points `source` at `./src/index.ts` and `main`/`module`/`types` at the `dist/` build.
 
+## How to work here
+
+- Check who calls it before you change it; say when impact is unclear rather than guessing.
+- Never overwrite or delete a large section you have not understood.
+- Don't invent requirements; surface what looks needed.
+- Report the risk, not only the change — correctness, security, operational, integration.
+- **Fix the root cause, not the instance.** One bug under many names (a copied helper, a rule stated
+  twice, a bypassed guard) is one class: one implementation, one guard.
+- Verify before claiming, and say which direction you checked; a passing test is not evidence it
+  pinned anything.
+- Missing recall of this project? Read this file + `git log` before acting.
+
+## Conciseness (applies everywhere)
+
+Prune verbose, keep correctness — code, comments, docs. A comment only for non-obvious intent; one
+idea per sentence; cut what wouldn't change what a reader does; delete history `git log` already
+holds — keep the rule, not the story. Never drop a caveat to save a line.
+
+## User-facing docs
+
+`README.md` is the only user-facing doc (no `docs/`, no media). Short first read, depth behind
+`<details>`; docs ship in the same commit as the change.
+
 ## Releasing
 
 Version-first and manual: dispatch **Actions → Release → Run workflow** with the version; that
