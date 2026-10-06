@@ -54,8 +54,8 @@ holds — keep the rule, not the story. Never drop a caveat to save a line.
 
 ## User-facing docs
 
-`README.md` is the only user-facing doc (no `docs/`, no media). Short first read, depth behind
-`<details>`; docs ship in the same commit as the change.
+`README.md` is the only user-facing doc (no `docs/`, no media). Keep the first read short and move
+depth behind `<details>` if it grows; docs ship in the same commit as the change.
 
 ## Releasing
 
